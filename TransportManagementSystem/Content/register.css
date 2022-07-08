@@ -1,0 +1,97 @@
+﻿body {
+}
+.regbutton {
+    background-color: green;
+    color: white;
+     width: 100%; 
+     margin: 10px 0;
+     font-weight: 700;
+}
+.regbutton:hover {
+    background-color: green;
+    color: white;
+}
+
+/*  Blood Controller */
+
+.createbtn {
+    width: 20em;
+    height: 3em;
+    padding: 10px;
+    font-size: 17px;
+    font-family: sans-serif;
+   /* background-color: #094a4c;*/
+}
+
+
+.register {
+    background-image: url('../picture/a.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 5% 15%;
+    box-shadow: 6px 6px 10px 2px #dcb6ff;
+    border-radius: 20px;
+}
+.lbl-reg {
+    background-color: green;
+    width: 11em;
+    font-weight: 900;
+    color: white;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.cerror {
+    color: red;
+    font-style: oblique;
+    margin-left: 6em;
+    text-shadow: 1px 1px 1px black;
+
+}
+.error {
+        color: red;
+    }
+
+.user-name {
+    width: 22em;;
+    height: 39px;
+    align-content: center;
+    padding: 10px;
+    /*box-shadow: 0px 2px 0px 0px blue;*/
+    border-style: none;
+    border-radius: 5px;
+    margin-bottom: 6px;
+    background-color: #ffffffb3;
+}
+
+
+
+.f-bak {
+    background-image: url('../picture/a.jpg');
+    width: 100%;
+    height: 30em;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.f-text {
+    text-align: center;
+    padding-top: 4em;
+    font-size: 35px;
+    font-family: Aquire;
+}
+.ftitle {
+    padding: 8px;
+    margin: 2em 0px 10px 0px;
+    border-left: 2px solid #1c6d0d;
+
+}
+
+
+.lbl-login {
+    padding: 36px 1em 0 1em;
+    text-align: center;   
+    font-size: 3em;
+    font-family: AquireBold;
+    color: orangered;
+    font-weight: 900;
+}

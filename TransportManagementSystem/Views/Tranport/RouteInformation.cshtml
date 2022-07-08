@@ -1,0 +1,144 @@
+﻿@using TransportManagementSystem.Models
+
+@{
+    //Layout = null;
+  
+    List<Routes> routes = ViewBag.routes;
+}
+<meta name="viewport" content="width=device-width" />
+<title>DoctorAppointment</title>
+<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/custom.css" rel="stylesheet" />
+<style>
+    .tdname {
+        font-size: 20px;
+        padding-right: 14px;
+    }
+
+    .tdvalue {
+        width: 237px;
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    #tddate {
+        width: 237px;
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    .bye {
+        margin-top: 30px;
+    }
+
+    .up {
+        margin-top: 50px;
+    }
+
+    .but {
+        float: right;
+        width: 130px;
+        margin-top: 18px;
+        background-color: #3ea5c1;
+        border-color: #3ea5c1;
+    }
+</style>
+<body>
+    <div class="container">
+        <center><h1 style="margin-top: 50px; color: #3ea5c1;">Route Information</h1></center>
+        <form action="" method="POST">
+            <center>
+                <table class="up">
+                   
+                    <tr>
+                        <td class="tdname">Routes:</td>
+                        <td>
+                            <select id="id" class="form-control tdvalue" name="RoutesName" required="">
+                                <option>Select</option>
+                                @foreach (Routes sp in routes)
+                                {
+                                    <option value="@sp.Id">@sp.RoutesName</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button class="btn btn-info but" id="searchbtn" style="">Search</button></td>
+                    </tr>
+                </table>
+            </center>
+
+        </form>
+        <div class="row bye">
+            
+            <div class="col-md-12 design">
+                <table class="table table-bordered table-striped table-hover" id="routestable">
+                    <thead>
+                        <tr>
+                            <th>Vehicles No.</th>
+                            <th>Starting Time</th>
+                            <th>Driver Name</th>
+                            <th>Route Name</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+
+                </table>
+            </div>
+           
+        </div>
+    </div>
+</body>
+
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+
+            var table = $('#routestable').DataTable();
+
+            $('#searchbtn').on('click', function () {
+
+
+                table.clear();
+                var id = $('#id').val();
+                var json = { id: id };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllRouteInfoById", "Tranport")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function (response) {
+
+                        $.each(response, function (key, value) {
+                            table.row.add([
+
+                                value.VehicleNo,
+                                value.StartTime,
+                                value.DriverName,
+                                value.RoutesName
+
+                            ]).draw(false);
+
+                        });
+
+                    }
+
+                });
+                return false;
+            });
+        });
+    </script>
+}

@@ -1,0 +1,150 @@
+﻿@model TransportManagementSystem.Models.RouteInformation
+@using TransportManagementSystem.Models
+@{
+    //Layout = null;
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width" />
+<title>Edit</title>
+<style>
+    .ll {
+        margin-top: 50px;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="container ll">
+        <center>
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="warning" style="background-color: gray;" id="warningLabel">
+                    <label>@ViewBag.Message</label>
+                </div>
+            }
+
+        </center>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { name = "myform", id = "myform", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <center>
+                            <h1>Update Route Information</h1><br />
+                        </center>
+                        @Html.ValidationSummary(true)
+
+                        @*<div class="form-group row">
+                            <div class="col-md-2"></div>
+                            @Html.LabelFor(model => model.VehicleNo, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.VehicleNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VehicleNo)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            @Html.LabelFor(model => model.RouteId, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                            <div class="col-md-4">
+                                <select name="id" class="form-control">
+                                    <option value="">Select Routes</option>
+                                    @foreach (Routes p in ViewBag.routes)
+                                    {
+                                        <option value="@p.Id">@p.RoutesName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.StartTime)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            @Html.LabelFor(model => model.DriverName, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.DriverName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VehicleNo)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2", style = "font-size: 20px;" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.VehicleNo)
+                            </div>
+                        </div>*@
+
+                        <div class="form-group row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-offset-2 col-md-8">
+                                <input type="submit" value="Update" class="btn btn-default" style="background-color: #007bff; width: 150px; color: white" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <center>
+        <div>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success klr" })
+        </div>
+    </center>
+
+</body>
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+        });
+        $("#myform").validate({
+            rules: {
+                VehicleNo: "required",
+
+
+                RouteId: "required",
+
+              
+                Schedule: "required",
+                DriverName: "required",
+                Phone: "required"
+
+            },
+            messages: {
+                VehicleNo: "Please Enter VehicleNo",
+
+                RouteId:
+                    "Please Select the routes",
+              
+                DriverName: "Please enter the DriverName",
+                Phone: "Please enter the Phone number"
+            }
+
+
+        });
+    </script>
+}

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<TransportManagementSystem.Models.RouteInformation>
+
+@{
+    //Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <style>
+        .col-sz {
+            width: 100px;
+        }
+
+        .wod {
+            width: 150px;
+            margin-bottom: 2px;
+        }
+
+        .indexdesignbox {
+            margin: 30px 30px 30px 30px;
+            padding: 30px;
+        }
+
+        .newbox {
+            margin-bottom: 45px;
+            width: 220px;
+            font-family: Monoton;
+            font-size: 21px;
+            color: white;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class=" indexdesignbox">
+        <center>
+            <p class="animated tada">
+                @Html.ActionLink("Add New RouteInfo", "Create", null, new { @class = "newbox btn btn-primary" })
+            </p>
+        </center>
+        <table id="datatable" class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Route Id
+                    </th>
+                    <th>
+                      Driver Id
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartTime)
+                    </th>   
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RouteId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DriverInfoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                   
+                    <td>
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary wod" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger wod" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#datatable').DataTable();
+        });
+    </script>
+</body>

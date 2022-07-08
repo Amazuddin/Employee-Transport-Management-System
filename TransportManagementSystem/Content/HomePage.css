@@ -1,0 +1,63 @@
+﻿body {
+}
+.t_hospital {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        #ourhospital {
+            font-size: 55px;
+            font-weight: bold;
+            border-bottom-style: black;
+        }
+
+        .diagnostic-img {
+            width: 100%;
+            height: 320px;
+            
+        }
+
+        .diagnoistic_name {
+            font-size: 16px;
+            margin-top: 5px;
+            padding: 10px;
+            text-align: center;
+            color: black;
+        }
+
+             .carousel-inner img {
+            width: 100%;
+            height: 600px;
+        }
+
+        #services {
+            font-size: 50px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            margin-top: 5px;
+        }
+
+        .Sclass {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+         .schoolimg-div {
+            height: 450px;
+        }
+
+        .kkja {
+            margin-top: 30px;
+        }
+
+            .kkja h2 {
+                color: darkcyan;
+            }
+
+            .kkja h3 {
+                margin-bottom: 1em;
+            }
+
+        .lf {
+            color: #4dabf7;
+        }

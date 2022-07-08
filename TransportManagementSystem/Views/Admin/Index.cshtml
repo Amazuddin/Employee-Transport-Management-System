@@ -1,0 +1,93 @@
+﻿@model IEnumerable<TransportManagementSystem.Models.RouteInformation>
+
+@{
+    //Layout = null;
+}
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width" />
+<title>Index</title>
+<style>
+    .kly {
+        margin-top: 20px;
+        width: 140px;
+    }
+
+    .kk {
+        width: 105px;
+    }
+
+    .ll {
+        width: 105px;
+    }
+</style>
+<body>
+    <div class="container">
+
+        <center>
+            <p>
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-dark kly" })
+            </p>
+        </center>
+
+        <table id="datatable" class="table table-bordered table-striped table-hover">
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.VehicleNo)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.RouteId)
+                </th>
+              
+                <th>
+                    @Html.DisplayNameFor(model => model.StartTime)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.DriverName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>*@
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.VehicleNo)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RouteId)
+                    </td>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.DriverName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>*@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary kk" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger ll" })
+                    </td>
+                    
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+
+@section scripts{
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#datatable').DataTable();
+        });
+    </script>
+}

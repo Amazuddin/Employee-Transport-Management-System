@@ -1,0 +1,106 @@
+﻿@model TransportManagementSystem.Models.Routes
+
+@{
+    //Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+
+    <style>
+        .b-box {
+            background-color: #faf8f3;
+            border: 1px steelblue;
+            padding: 50px;
+            margin-top: 40px;
+            margin-bottom: 50px;     
+        }
+
+        .bbt {
+           
+            width: 31%;
+        }
+
+        .warning {
+            border-radius: 9px;
+            box-shadow: -1px 4px 1px 1px #34404c;
+            /* color: red; */
+            font-weight: 400;
+            margin-bottom: 11px;
+            padding: 10px;
+            text-align: center;
+            width: 28em;
+        }
+
+        .error {
+            color: red;
+        }
+        .back {
+            margin-top: 20px;
+            width: 100%;
+            font-size: 20px;
+            color: white;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                @Html.ActionLink("Back to List", "RouteIndex", null, new { @class = "btn btn-dark back" })
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="b-box">
+                    <center>
+                        @if (ViewBag.Message != null)
+                        {
+                            <div class="warning" style="background-color: #46e86d;" id="warningLabel">
+                                <label>@ViewBag.Message</label>
+                            </div>
+                        }
+                    </center>
+                    @using (Html.BeginForm("Create", "Route", FormMethod.Post, new { name = "insertForm", id = "insertForm", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal">
+                            <center>
+                                <h3 style="margin-bottom: 25px;">Add New Route</h3>
+                            </center>
+
+                            @Html.ValidationSummary(true)
+
+                            <div class="form-group row">
+                                <div class="col-md-2"> </div>
+                                <label>Route Name</label>
+                                <div class="col-md-6">
+                                    <input type="text" name="RoutesName" required="" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-10" style="position: absolute; text-align: center;">
+                                    <input type="submit" value="Create" class="btn btn-primary bbt" />
+                                </div>
+                            </div>
+
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>

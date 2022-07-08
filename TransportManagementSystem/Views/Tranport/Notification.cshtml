@@ -1,0 +1,80 @@
+﻿@using TransportManagementSystem.Models
+@{
+    //Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Notification</title>
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <style>
+        .t_med {
+            margin-top: 50px;
+            margin-bottom: 15px;
+        }
+
+        #ourmed {
+            font-size: 48px;
+            border-bottom-style: ridge;
+            font-weight: bold;
+            border-bottom-style: black;
+            color: #3ea5c1;
+        }
+
+            #ourmed:hover {
+                color: black;
+            }
+        .tabledesign {
+            margin: 80px;
+            margin-top: 60px;
+            padding: 24px;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="t_med">
+            <center>
+                <strong id="ourmed">Notice</strong>
+            </center>
+        </div><br>
+        <div class="tabledesign">
+            <table id="informationtable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+
+                        <th class="th-sm">Date</th>
+                        <th class="th-sm">Notice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Notification d in Model)
+                    {
+
+                        <tr>
+
+                            <td>@d.Date</td>
+                            <td>@d.Message</td>
+                            
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+@section scripts
+{
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#informationtable').DataTable();
+        });
+    </script>
+}

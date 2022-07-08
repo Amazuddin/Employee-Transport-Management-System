@@ -1,0 +1,120 @@
+﻿@using TransportManagementSystem.Models
+
+@{
+    // Layout = null;
+    Employee employee = ViewBag.Employee;
+}
+
+<meta name="viewport" content="width=device-width" />
+<title>Update Profile</title>
+<style>
+    .btdesign {
+        width: 100%;
+        margin-top: 15px;
+        background-color: #dc3545;
+    }
+
+    .colordiv {
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .user-name {
+        width: 24em;
+        height: 39px;
+        align-content: center;
+        padding: 10px;
+        /*box-shadow: 0px 2px 0px 0px blue;*/
+        border-radius: 5px;
+        margin-bottom: 6px;
+        background-color: #ffffffb3;
+    }
+    .lbl-reg {
+        background-color: #dc3545;
+        width: 11em;
+        font-weight: 900;
+        color: white;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .lbl-login {
+        padding: 25px 1em 0 1em;
+        text-align: center;
+        text-shadow: 3px 4px 1px black;
+        font-size: 4em;
+        font-family: AquireBold;
+        color: #dc3545;
+        font-weight: 900;
+    }
+</style>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 colordiv">
+                <p class="lbl-login animated bounceInUp"><i class="fas fa-edit"></i></p>
+
+                <form id="Updateprofile" method="POST" action="Update" enctype="multipart/form-data">
+                    <center>
+                        <table>
+                            <tr>
+                                <td>
+                                    <label class="lbl-reg " for="inputName">Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control user-name animated bounceInLeft" id="inputName" name="EmployeeName" value="@employee.EmployeeName">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="lbl-reg " for="Address">Address</label>
+                                </td>
+                                <td>
+                                    <input class="form-control user-name" type="text" name="Address" id="Address" value="@employee.Address" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="lbl-reg" for="Mobile">Mobile</label>
+                                </td>
+                                <td>
+                                    <input class="form-control user-name" type="text" name="Mobile" id="Mobile" value="@employee.Mobile" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="lbl-reg" for="Image">Image</label>
+                                </td>
+                                <td>
+                                    <input class="form-control user-name" style="padding: 5px;" type="file" name="Image" id="Image" />
+                                    <input type="hidden" name="pastImage" value="@employee.Image" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label class="lbl-reg" for="email">Email</label>
+                                </td>
+                                <td>
+                                    <input class=" form-control user-name" type="text" name="Email" id="email" value="@employee.Email" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <button type="submit" class="btn btn-info btdesign"><i class="fas fa-user-edit"> </i> Update</button>
+
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</body>

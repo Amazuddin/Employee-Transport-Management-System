@@ -1,0 +1,117 @@
+﻿@{
+    //Layout = null;
+}
+
+
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datepicker.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width" />
+<title>Notice</title>
+<style>
+    .tdname {
+        font-size: 20px;
+        padding-right: 14px;
+    }
+
+    #tddate {
+        border: 2px solid #2c3e50;
+        border-radius: 10px;
+        height: 40px;
+        margin-top: 10px;
+        width: 260px;
+    }
+
+    .bye {
+        margin-top: 30px;
+    }
+
+    .up {
+        margin-top: 50px;
+    }
+
+    .but {
+        background-color: #3ea5c1;
+        border-color: #3ea5c1;
+        float: right;
+        margin-top: 18px;
+        width: 130px;
+    }
+
+    .msgdesign {
+        background-color: brown;
+        color: white;
+        font-size: 20px;
+        font-weight: 800;
+        height: 50px;
+        margin-top: 10px;
+        padding-top: 10px;
+        text-align: center;
+        width: 50%;
+    }
+</style>
+<body>
+    <div>
+        <center>
+            <h1 style="margin-top: 50px; color: #3ea5c1; font-size: 48px;">Notice</h1>
+        </center>
+        <form action="" method="POST">
+            <center>
+                @if (ViewBag.Yes == '1')
+                {
+                    <div class="msgdesign" id="warningLabel">
+                        <label>Send Successfully</label>
+                    </div>
+                }
+                <table class="up">
+
+                    <tr>
+                        <td class="tdname">Date:</td>
+                        <td>
+                            <input type="text" class="form-control" id="tddate" placeholder="Date" name="Date" required="" autocomplete="off" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdname">Notice:</td>
+                        <td>
+                            <textarea style="height: 20em; margin-top: 50px; width: 380px;" class="form-control" id="inputprescript" name="Message"
+                                      placeholder="Write Notice......"></textarea>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-info but" id="searchbtn" style=""><i class="fas fa-save"></i> Create</button>
+                            @*@Html.ActionLink("Back", "NoticeIndex", null, new { @class = "btn btn-warning bt" })*@
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </form>
+    </div>
+</body>
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            setTimeout(function () {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+        });
+
+
+        $(document).ready(function () {
+            $('#tddate').datepicker({
+                //startDate: date,
+                //weekStart: 6,
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+}

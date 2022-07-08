@@ -1,0 +1,134 @@
+﻿@model TransportManagementSystem.Models.DriverInfo
+
+@{
+    //Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+
+    <style>
+        .b-box {
+            margin: 26px;
+            /*background-color: aliceblue;*/
+            padding: 41px;
+            border: 1px steelblue;
+          
+            box-shadow: 0px 0px 20px #d8d4d4;
+            background-color: #faf8f3;
+        }
+
+        .bbt {
+            margin-left: 3.5em;
+            width: 25%;
+        }
+
+        .warning {
+            border-radius: 9px;
+            box-shadow: -1px 4px 1px 1px #34404c;
+            /* color: red; */
+            font-weight: 400;
+            margin-bottom: 11px;
+            padding: 10px;
+            text-align: center;
+            width: 28em;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="row">
+
+
+            <div class="col-md-12 b-box">
+                <center>
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="warning" style="background-color: #46e86d;" id="warningLabel">
+                            <label>@ViewBag.Message</label>
+                        </div>
+                    }
+                </center>
+                @using (Html.BeginForm("Create", "Driver", FormMethod.Post, new { name = "insertForm", id = "insertForm", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <center>
+                            <h3 style="margin-bottom: 25px; font-family: Monoton;">Add New Driver</h3>
+                        </center>
+                        @Html.ValidationSummary(true)
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            @Html.LabelFor(model => model.RouteId, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                <select name="RouteId" class="form-control">
+                                    <option value="">Select Route</option>
+                                    @foreach (var v in ViewBag.route)
+                                    {
+                                        <option value="@v.Id">@v.RoutesName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            @Html.LabelFor(model => model.DriverName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                <input type="text" name="DriverName" value=" " class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            @Html.LabelFor(model => model.Phone, new {@class = "control-label col-md-2"})
+                            <div class="col-md-6">
+                                <input type="text" name="Phone" value=" " class="form-control" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            @Html.LabelFor(model => model.VehicleNo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                <input type="text" name="VehicleNo" value=" " class="form-control" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Image, new { Type = "file" })
+                                @Html.ValidationMessageFor(model => model.Image)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-12" style="position: absolute; text-align: center;">
+                                <input type="submit" value="Create" style="width: 23%" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="text-align: center; margin-top: 27px;">
+                                @Html.ActionLink("Back to List", "DriverIndex", null, new { @class = "btn btn-warning bbt" })
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+</body>

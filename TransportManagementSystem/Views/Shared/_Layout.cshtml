@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title TMS</title>
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link href="~/Content/custom.css" rel="stylesheet"/>
+    <link href="//db.onlinewebfonts.com/c/7cc6719bd5f0310be3150ba33418e72e?family=Comic+Sans+MS" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .navfont { font-family: Comic Sans MS; }
+
+        .myclass { font-family: Comic Sans MS; }
+
+        #purple { background: linear-gradient(to right, #41295a, #2f0743); }
+
+        .logo { color: goldenrod; }
+
+        .footcolor { background: linear-gradient(to right, #41295a, #2f0743); }
+    </style>
+</head>
+<body>
+
+<nav id="purple" class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand myclass" href="#" style="font-family: Comic Sans MS;">
+        <i class="logo fa fa-bus"></i>
+        EMPLOYEE TRANSPORT
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="menual collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+
+        @if (Session["EmployeeId"] == null && Session["AdminId"] == null)
+        {
+            <div class="navbar-nav">
+                <a class="nav-item nav-link @ViewBag.Login" href="@Url.Action("Login", "Login")">Login</a>
+                <a class="nav-item nav-link @ViewBag.Register" href="@Url.Action("Register", "Login")">Registration</a>
+            </div>
+        }
+        @if (Session["EmployeeId"] != null)
+        {
+            <div class="navbar-nav navfont">
+                <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index", "Tranport")">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link  @ViewBag.Driver" href="@Url.Action("DriverInformation", "Tranport")">Driver</a>
+                <a class="nav-item nav-link  @ViewBag.RouteInformation" href="@Url.Action("RouteInformation", "Tranport")">RoutesInfo</a>
+                <a class="nav-item nav-link  @ViewBag.Notification" href="@Url.Action("Notification", "Tranport")">Notice</a>
+                <a class="nav-item nav-link  @ViewBag.Profile" href="@Url.Action("Profile", "Tranport")">Profile</a>
+                <a class="nav-item nav-link " href="@Url.Action("Logout", "Login")">Logout</a>
+            </div>
+        }
+
+        @if (Session["AdminId"] != null)
+        {
+            <div class="navbar-nav">
+                <a class="nav-item nav-link @ViewBag.Index" href="@Url.Action("Index", "Tranport")">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Operations
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item  @ViewBag.EmployeeIndex" href="@Url.Action("EmployeeIndex", "Employee")">Employee</a>
+                        <a class="dropdown-item  @ViewBag.RouteIndex" href="@Url.Action("RouteIndex", "Route")">Route</a>
+                        <a class="dropdown-item  @ViewBag.DriverIndex" href="@Url.Action("DriverIndex", "Driver")">Driver</a>
+                        <a class="dropdown-item  @ViewBag.RouteInformationIndex" href="@Url.Action("RouteInformationIndex", "RouteInformation")">RoutesInfo</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Finance
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item  @ViewBag.Payment" href="@Url.Action("Payment", "Admin")">Payment</a>
+                        <a class="dropdown-item  @ViewBag.PaymentInfo" href="@Url.Action("PaymentInfo", "Admin")">PaymentInfo</a>
+                    </div>
+                </li>
+
+ 
+                <a class="nav-item nav-link  @ViewBag.Notice" href="@Url.Action("NoticeIndex", "Notice")">Notice</a>
+                <a class="nav-item nav-link " href="@Url.Action("AdminLogout", "Login")">Logout</a>
+            </div>
+        }
+    </div>
+</nav>
+
+@RenderBody()
+
+<footer class="footer-distributed footcolor">
+
+    <div class="footer-left">
+
+        <h3>Employee<span>Transport</span></h3>
+
+        <p class="footer-links" style="font-family: Comic Sans MS;">
+            We are dedicate to providing the best possible<br> Transport service for the Employee to get better Service.
+        </p>
+
+        <p style="font-family: Comic Sans MS;" class="footer-company-name">2021</p>
+    </div>
+
+    <div class="footer-center">
+
+        <div>
+            <i class="fa fa-map-marker"></i>
+            <p style="font-family: Comic Sans MS;">Chittagong,Bangladesh</p>
+        </div>
+
+        <div>
+            <i class="fa fa-phone"></i>
+            <p style="font-family: Comic Sans MS;">+01234567891</p>
+        </div>
+
+        <div>
+            <i class="fa fa-envelope"></i>
+            <p style="font-family: Comic Sans MS;">
+                <a href="#">office@gmail.com</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-right">
+
+        <p style="font-family: Comic Sans MS;" class="footer-company-about">
+            <span>About the company</span>
+            TMS
+        </p>
+
+        <div class="footer-icons">
+
+            <a href="#">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#">
+                <i class="fab fa-github"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+@RenderSection("scripts", false)

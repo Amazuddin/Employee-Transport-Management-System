@@ -1,0 +1,115 @@
+﻿@model TransportManagementSystem.Models.RouteInformation
+
+@{
+    //Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Edit</title>
+    <style>
+        .ba-box {
+            margin: 26px;
+            /*background-color: aliceblue;*/
+            padding: 41px;
+            border: 1px steelblue;
+            border-radius: 25px;
+            box-shadow: 0px 0px 20px #d8d4d4;
+            background-color: #faf8f3;
+        }
+
+        .bbtn {
+            width: 25%;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ba-box">
+
+            @using (Html.BeginForm("Edit", "RouteInformation", FormMethod.Post, new { name = "insertForm", id = "insertForm", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <center>
+                        <h2 style="margin-bottom: 20px; font-family: Monoton;">Edit Driver Info</h2>
+                    </center>
+                    @Html.ValidationSummary(true)
+                    <div class="form-group row">
+                        <div class="col-md-2"> </div>
+                        @Html.LabelFor(model => model.RouteId, new {@class = "control-label col-md-2"})
+                        <div class="col-md-6">
+                            <select name="RouteId" class="form-control">
+                                <option value="">Select Category</option>
+                                @foreach (var v in ViewBag.route)
+                                {
+                                    if (v.Id == Model.RouteId)
+                                    {
+                                        <option value="@v.Id" selected="selected">@v.RoutesName</option>
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        <option value="@v.Id">@v.RoutesName</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2"> </div>
+                        @Html.LabelFor(model => model.DriverInfoId, new { @class = "control-label col-md-2" })
+                        <div class="col-md-6">
+                            <select name="DriverInfoId" class="form-control">
+                                <option value="">Select Category</option>
+                                @foreach (var v in ViewBag.driver)
+                                {
+                                    if (v.Id == Model.DriverInfoId)
+                                    {
+                                        <option value="@v.Id" selected="selected">@v.VehicleNo</option>
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        <option value="@v.Id">@v.VehicleNo</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-2"> </div>
+                        @Html.LabelFor(model => model.StartTime, new {@class = "control-label col-md-2"})
+                        <div class="col-md-6">
+                            <input type="text" name="DriverName" value="@Model.StartTime" class="form-control"/>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-md-12" style="position: absolute; text-align: center;">
+                            <input type="submit" value="Edit" style="width: 18%;" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center; margin-top: 27px;">
+                            @Html.ActionLink("Back to List", "RouteInformationIndex", null, new { @class = "btn btn-warning bbtn" })
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
+</div>

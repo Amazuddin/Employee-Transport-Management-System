@@ -1,0 +1,87 @@
+﻿@model TransportManagementSystem.Models.Routes
+
+@{
+    //Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+  
+    <title>Edit</title>
+    <style>
+        .b-box {
+            background-color: #faf8f3;
+            border: 1px steelblue;
+            padding: 50px;
+            margin-top: 40px;
+            margin-bottom: 50px;
+        }
+
+        .bbt {
+            width: 25%;
+        }
+
+        .error {
+            color: red;
+        }
+        .back {
+            margin-top: 20px;
+            width: 100%;
+            font-size: 20px;
+            color: white;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("Back to List", "RouteIndex", null, new { @class = "btn btn-dark back" })
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="b-box">
+                @using (Html.BeginForm("Edit", "Route", FormMethod.Post, new { name = "insertForm", id = "insertForm", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <center>
+                            <h2 style="margin-bottom: 20px;">Edit Route</h2>
+                        </center>
+                        @Html.ValidationSummary(true)
+
+
+                        <div class="form-group row">
+                            <div class="col-md-2"> </div>
+                            <label>Route Name</label>
+                            <div class="col-md-6">
+                                <input type="text" name="RoutesName" required="" class="form-control" value="@Model.RoutesName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-10" style="position: absolute; text-align: center;">
+                                <input type="submit" value="Create" class="btn btn-primary bbt" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+

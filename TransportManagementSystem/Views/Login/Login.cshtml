@@ -1,0 +1,109 @@
+﻿@{
+    //Layout = null;
+}
+<link href="~/Content/Login.css" rel="stylesheet" />
+<!DOCTYPE html>
+<div class="log">
+
+    <div class="container">
+
+        <center>
+            <h1 style="padding-top: 50px; color: Black; font-size: 30px;">Employee LogIn</h1>
+        </center>
+
+
+        <div class=" w3l-login-form kk">
+            @if (ViewBag.Error != null)
+            {
+                <div class="warning" id="warningLabel">
+                    <label style="text-align: center;">Login Failed: Check your UserName Or Password.</label>
+                </div>
+            }
+            <h2>Login Here</h2>
+            <form action="~/Login/LoginUser" method="POST" id="login">
+
+                <div class=" w3l-form-group">
+                    <label>Username Or Email:</label>
+                    <div class="group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" class="form-control" placeholder="UserEmail" name="username" required="required" />
+                    </div>
+
+                </div>
+                <p class='elabel1'></p>
+                <div class=" w3l-form-group">
+                    <label>Password:</label>
+                    <div class="group">
+                        <i class="fas fa-unlock"></i>
+                        <input type="password" class="form-control" placeholder="Password" name="password" required="required" />
+
+                    </div>
+
+                </div>
+                <p class='elabel2'></p>
+
+                <button type="submit">Login</button>
+            </form>
+            <center>
+                <div class="forgetclass">
+                    <a href="~/Login/ForgetPassword" style="color: white;font-size: 16px">Forget Password?</a>
+                </div>
+               
+            </center>
+
+        </div>
+
+       
+    </div>
+</div>
+@section scripts
+    {
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            setTimeout(function () {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+            $.validator.setDefaults({ ignore: ":hidden:not(select)" });
+            $("#login").validate({
+
+                rules: {
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Password: {
+                        required: true
+
+                    }
+                },
+                messages: {
+                    Email: {
+                        required: "Please Enter Your Email",
+                        email: "Email is not correct"
+                    },
+                    Password: {
+                        required: "Please Enter Your Password"
+
+                    }
+
+
+                },
+                errorPlacement: function (error, element) {
+                    if (element.is(":text")) {
+                        error.appendTo(('.elabel1'));
+                    } else if (element.is(":password")) {
+                        error.appendTo(('.elabel2'));
+                    }
+                }
+
+
+            });
+
+        });
+
+    </script>
+}

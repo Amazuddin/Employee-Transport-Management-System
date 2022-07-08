@@ -1,0 +1,102 @@
+﻿@using TransportManagementSystem.Models
+@{
+    //Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Notification</title>
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <style>
+        .top {
+            margin-bottom: 80px;
+            margin-top: 80px;
+        }
+
+        .label-payment {
+            color: brown;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .button_paymrnt {
+            font-size: 18px;
+            width: 140px;
+        }
+        .msgdesign {
+            color: white;
+            background-color: brown;
+            font-size: 20px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 800;
+            height: 50px;
+            width: 50%;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <center>
+        @if (ViewBag.message != null)
+        {
+            <p class="msgdesign" id="warningLabel">@ViewBag.message</p>
+        }
+    </center>
+
+
+    <div class="card top">
+        <div class="card-header text-left">
+            <h3>Create Payment</h3>
+        </div>
+
+        <form id="payment" action="~/Admin/Payment" method="POST" enctype="multipart/form-data">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="label-payment">Payment Date</label>
+                        <input type="date" name="PaymentDate" id="PaymentDate" class="form-control"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-payment">Vehicle</label>
+                        <select name="VehicleId" id="VehicleId" class="form-control">
+                            <option value="">Select Vehicle</option>
+                            @foreach (var v in ViewBag.Vehilce)
+                            {
+                                <option value="@v.Id">@v.VehicleNo</option>
+                            }
+                        </select>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label class="label-payment">Amount</label>
+                        <input type="number" name="Ammount" id="Ammount" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted text-right">
+                <button class="btn btn-dark button_paymrnt" type="submit">Payment</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                $("#warningLabel").hide(1000).empty();
+            }, 5000);
+        });
+
+    </script>
+}

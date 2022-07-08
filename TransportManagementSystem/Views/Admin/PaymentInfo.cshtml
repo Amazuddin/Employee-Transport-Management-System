@@ -1,0 +1,111 @@
+﻿
+@{
+    //Layout = null;
+}
+
+
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>PaymentInfo</title>
+    <style>
+        .top {
+            margin-bottom: 80px;
+            margin-top: 80px;
+        }
+
+        .label-payment {
+            color: brown;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .button_paymrnt {
+            font-size: 18px;
+            width: 140px;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="card top">
+        <div class="card-header text-left">
+            <h3>Payment Information</h3>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="label-payment">Payment Date</label>
+                    <input type="date" name="PaymentDate" id="tddate" class="form-control"/>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-footer text-muted text-right">
+            <button class="btn btn-dark button_paymrnt" id="searchbtn" type="submit">Search</button>
+        </div>
+    </div>
+
+    <table id="patable" class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <td>Serial No.</td>
+            <td>VehicleNo</td>
+            <td>Amount</td>
+            <td>Payment Date</td>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+
+            var table = $('#patable').DataTable();
+            $('#searchbtn').on('click', function() {
+
+
+                table.clear();
+
+                var serialNo = 1;
+                var date = $('#tddate').val();
+                var json = { date: date };
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetAllPayment", "Admin")',
+                    contentType: 'application/json',
+                    data: JSON.stringify(json),
+                    success: function(response) {
+
+                        $.each(response, function(key, value) {
+                            table.row.add([
+                                serialNo,
+                                value.VehicleNo,
+                                value.Amount,
+                                value.PaymentDate
+                            ]).draw(false);
+                            serialNo += 1;
+                        });
+
+                    }
+
+                });
+                return false;
+            });
+
+
+        });
+    </script>
+
+}
